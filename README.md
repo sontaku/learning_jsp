@@ -24,6 +24,8 @@
 
 - \workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost
 
+참고 : https://mangkyu.tistory.com/14
+
 
 
 ## 문법
