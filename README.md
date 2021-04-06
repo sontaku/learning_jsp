@@ -39,7 +39,27 @@
 페이지 설정 정보 지정
 
 - page : 페이지 설정
+
 - include
+
+  - header footer 분리
+
+    각 작성한 header.jsp파일과 footer.jsp파일을 body태그 상단과 하단에 주입한다.
+
+    
+
+    ```jsp
+    <body>
+        <%@ include file='/header.jsp' %>
+        
+        ~ body 내용  ~
+        
+        <%@ include file='/footer.jsp' %>
+    </body>
+    ```
+
+    
+
 - taglib : 태그 삽입
 
 ### Declaration(선언부)
@@ -148,6 +168,8 @@
    - ```jsp
      <% ResultSet rs = ps.executeQuery(); %>
      ```
+     
+     - executeUpdate()는 insert, delete, update의 경우 자주 사용하며 DB 결과에 대한 처리 행 개수를 리턴(int)받는다.
 
 
 
@@ -198,9 +220,52 @@
 
 
 
+## form
+
+### 문법
+
+```jsp
+<form action="전달할곳.jsp" method="post">
+	사용자: <input name='User' type='text'><br/>
+	비밀번호: <input name='Pass' type='password'><br/>
+<input type='submit' value='login'> 
+```
+
+위의 form의 경우엔 각 input에서 전달 받은 'User', 'Pass' 값을 '전달할곳.jsp' 파일로 파라미터로 넘겨준다.
 
 
 
+### 전달방식
+
+- get
+
+  ```jsp
+  <%
+  	String user = request.getParameter("User");
+  	String pass = request.getParameter("Pass");
+  %>
+  ```
+
+  - 전달 받은 파라미터 값을 넘겨준다. 
+  - url의 뒷부분에 파라미터를 전송
+  - HTTP 프로토콜의 헤더영역에서 전송
+  - 전송데이터 길이 제한이 있고, 데이터가 노출 될 수 있다.
+
+- post
+
+  ```jsp
+  <%
+  	// post 방식으로 전달시 한글깨짐이 발생함
+  	request.setCharacterEncoding("UTF-8");
+  
+  	String user = request.getParameter("User");
+  	String pass = request.getParameter("Pass");
+  %> 
+  ```
+
+  - get방식과 달리 url에 파라미터값이 담기지 않는다.
+  - 전송데이터 길이 제한이 없으며, 데이터를 감출 수 있다.
+  - 비밀번호와 같은 중요한 내용 혹은 방대한 데이터(파일 전송) 전달시 post를 사용한다. 
 
 
 
