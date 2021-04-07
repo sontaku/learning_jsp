@@ -121,6 +121,20 @@
 
 
 
+## JSP 내장 객체
+
+- request
+- response
+- pageContext
+- session
+- out
+- config
+- page
+- exception
+- application
+
+
+
 ## DB connecting
 
 1. 드라이버 로딩
@@ -231,7 +245,11 @@
 <input type='submit' value='login'> 
 ```
 
-위의 form의 경우엔 각 input에서 전달 받은 'User', 'Pass' 값을 '전달할곳.jsp' 파일로 파라미터로 넘겨준다.
+- method : 전달방식(get / post)
+- 위의 form의 경우엔 각 input에서 전달 받은 'User', 'Pass' 값을 '전달할곳.jsp' 파일로 파라미터로 넘겨준다.
+- name을 부여하지 않으면 값이 넘어가지 않는다. id, class는 css, js에서 자주 호출하고 name은 서버가 호출하게 된다.
+
+
 
 
 
@@ -269,3 +287,127 @@
 
 
 
+
+
+## 쿠키와 세션
+
+### 쿠키란
+
+- 웹브라우저(클라이언트)가 보관하는 데이터.
+- 최근에는 중요한 정보는 쿠키에 담지 않고 세션에 저장하여 사용한다.
+
+
+
+### 쿠키 동작방식
+
+1. 서버에서 쿠키 생성
+2. 서버 -> 클라이언트 쿠키 전송(response)
+3. 클라이언트에 쿠키 저장
+
+
+
+클라이언트에 저장된 쿠키가 삭제되지 않으면 매번 쿠키를 전송만 반복하게 된다.
+
+
+
+### 쿠키 생성
+
+#### 1. 쿠키 객체 생성
+
+```jsp
+Cookie c = new Cookie("yourId", "sontaku");
+```
+
+#### 2. 속성 부여
+
+```jsp
+c.setMaxAge(1*60*2);
+```
+
+#### 3. 클라이언트에 쿠키 전송
+
+```jsp
+response.addCookie(c);
+```
+
+
+
+
+
+### 쿠키 정보 알아내기
+
+#### 1. 클라이언트로부터 쿠키를 얻어옴
+
+```jsp
+Cookie[] ck = request.getCookies();
+```
+
+
+
+#### 2. 조건에 부합한 쿠키 값을 출력
+
+```jsp
+for(Cookie c : ck) {
+	// 2. 쿠키 이름 중에 "yourid"가 있다면 그 쿠키의 값을 출력
+	if(c.getName().equals("yourId")) {
+		out.println( c.getValue() + "님 접속중 <br/>" );
+	}
+}
+```
+
+### 세션
+
+- 웹 컨테이너는 기본적으로 필요한 정보를 저장할 수 있도록 하나의 웹 브라우저당 하나의 세션을 생성
+
+- 쿠키는 클라이언트의 웹브라우저에 저장하는 반면,
+
+  **세션은 오직 서버에 저장**한다.
+
+- 쿠키는 String 값만 저장하고,
+
+  세션은 Object 객체에 저장한다.
+
+
+
+### 세션 동작방식
+
+1. 클라이언트의 요청 ( 값을 서버로 전달함 )
+2. 서버에 저장되있는 값과 비교
+
+대표적으로 **로그인**, 장바구니에 사용된다.
+
+
+
+### 세션 생성
+
+#### 저장
+
+```java
+session.setAttribute(name, value);
+```
+
+세션에 'name'이라는 이름에 변수 'value'를 저장
+
+ #### 값 불러 오기
+
+```java
+// MainPage.jsp
+//# 1."id"로 저장된 세션값을 얻어온다.
+Object obj = session.getAttribute("id");
+//# 2. 값이 null이라면 LoginForm.jsp로 페이지 이동
+if(obj == null) {
+	response.sendRedirect("LoginForm.jsp");
+	return;
+}
+//# 3. null이 아니라면 String 형변환하여 변수에 지정
+String user = (String)obj;
+```
+
+
+
+### 세션 메소드
+
+- void setAttribute
+- Object getAttribute
+- void removeAttribute
+- voite invalidate
