@@ -14,7 +14,7 @@ public void DBLoading(){
   
 
 	try{
-		conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:orcl","scott","tiger");
+		conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","SCOTT","TIGER");
 	
 		ps = conn.createStatement();
 		rs = ps.executeQuery("select * from emp");
@@ -28,10 +28,20 @@ public void DBLoading(){
 <%-- MIME 타입 변경하기 --%>
 <%
 	//1. request의 객체를 통해 type 이름의 값을 넘겨받는다
+	String type = request.getParameter("type");
 	//2. null 이라면 html파일 형식으로 기술
-	//3. excel이라면 excel파일 형식으로 기술
-	//4. word   라면 word파일 형식으로 기술
-	
+	if(type != null) {
+		
+		//3. excel이라면 excel파일 형식으로 기술
+		if(type.equals("excel")) {
+			// 단, chrome은 엑셀을 지원하지 않음
+			response.setContentType("application/vnd.ms-excel");	
+		}
+		//4. word   라면 word파일 형식으로 기술
+		else if(type.equalsIgnoreCase("word")) {
+			response.setContentType("application/msword");
+		}
+	}
 %>
 
 <!DOCTYPE html>

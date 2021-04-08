@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -12,8 +13,16 @@
 
 <%	
 	// 1. 클라이언트로부터 Cookie를 얻어옴 
+	Cookie[] ck = request.getCookies();
+	//HashMap<String, String> hm = new HashMap<>();
+	for(Cookie c : ck) {
+		// 2. 쿠키 이름 중에 "yourid"가 있다면 그 쿠키의 값을 출력
+		if(c.getName().equals("yourId")) {
+			out.println( c.getValue() + "님 접속중 <br/>" );
+		}
+		//hm.put(key, value)
+	}
 	
-	// 2. 쿠키 이름 중에 "yourid"가 있다면 그 쿠키의 값을 출력
 	
 %>
 

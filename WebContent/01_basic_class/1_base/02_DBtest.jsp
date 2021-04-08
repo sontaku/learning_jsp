@@ -3,6 +3,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page pageEncoding="UTF-8"%>
 
+<%@ page errorPage="02_NormalErrorPage.jsp" %>
+
 <%
 	// 1. 드라이버 로딩
 	Class.forName("oracle.jdbc.driver.OracleDriver");

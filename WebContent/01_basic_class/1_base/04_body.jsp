@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 
+	파일 형식
+	웹 : mimetype
+	자바 : contentType
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +12,7 @@
 <title> header와 footer 삽입하기</title>
 </head>
 <body>
-
+		<%@ include file='./04_header.jsp' %>
 		<hr><hr>
 		<!-- 메인 내용 시작  -->
 		
@@ -46,6 +51,6 @@
 		<!-- 메인 내용 끝  -->
 		<hr><hr>
 		
-
+		<%@ include file='/01_basic_class/1_base/04_footer.jsp' %>
 </body>
 </html>

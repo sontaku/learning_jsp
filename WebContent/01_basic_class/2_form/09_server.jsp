@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--<%@ page import="temp.*" %>-->
-<%@ page import="basic.dto.EmpDAO, basic.dto.EmpDTO"%>
+<%@ page import="basic.dao.EmpDAO, basic.dto.EmpDTO"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.DriverManager"%>

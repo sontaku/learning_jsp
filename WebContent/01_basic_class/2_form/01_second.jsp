@@ -2,7 +2,15 @@
     pageEncoding="UTF-8"%>
 
 <%
+	// get
+	//String user = request.getParameter("User");
+	//String pass = request.getParameter("Pass");
 	
+	// post
+	// post 방식으로 전달시 한글깨짐이 발생함
+	request.setCharacterEncoding("UTF-8");
+	String user = request.getParameter("User");
+	String pass = request.getParameter("Pass");
 %> 
    
 <!DOCTYPE html>
@@ -13,7 +21,7 @@
 </head>
 <body>
 	<h2>폼의 입력값 넘겨받아 처리</h2>
-	입력한 아이디 :  <br/>
-	입력한 패스워드 : 
+	입력한 아이디 :  <%=user %><br/>
+	입력한 패스워드 : <%=pass %>
 </body>
 </html>

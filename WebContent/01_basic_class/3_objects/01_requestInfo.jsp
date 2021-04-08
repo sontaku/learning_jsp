@@ -7,6 +7,8 @@
 <title> 서버 정보 </title>
 </head>
 <body>
+<!-- jsp -> java 변환할 때 선언된 변수들 (내장객체) -->
+<% out.print("안녕하세요"); %>
 
 요청정보 프로토콜 = <%= request.getProtocol() %> <br>
 요청정보 전송방식 = <%= request.getMethod() %> <br>
