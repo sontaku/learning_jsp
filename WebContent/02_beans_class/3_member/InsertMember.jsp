@@ -10,6 +10,8 @@
 	// 데이터베이스 입력
 	MemberDao dao = MemberDao.getInstance();
 	dao.insertMember(m);
+	
+	
 %>
 
 
@@ -21,9 +23,9 @@
 </head>
 <body>
 	아이디 : <%=m.getId() %><br>
-	패스워드 :<br>
-	이름 : <br>
-	전화 : <br>
-	주소 : <br>
+	패스워드 : <%=m.getPassword() %><br>
+	이름 : <%=m.getName() %><br>
+	전화 : <%=m.getTel() %><br>
+	주소 : <%=m.getAddr() %><br>
 </body>
 </html>
