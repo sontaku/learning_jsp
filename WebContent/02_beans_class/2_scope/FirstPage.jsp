@@ -24,6 +24,8 @@
 하나의 어플리케이션 속성 : <%= application.getAttribute("name") %> <br>
 
 <!-- #############  -->
+<!-- <a href="SecondPage.jsp">다음페이지</a> -->
+<jsp:forward page="SecondPage.jsp"></jsp:forward>
 <!-- 페이지 forward 이동된다면  -->
 		
 
