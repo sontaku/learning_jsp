@@ -411,3 +411,34 @@ String user = (String)obj;
 - Object getAttribute
 - void removeAttribute
 - voite invalidate
+
+
+
+<hr>
+
+## MyBatis
+
+JDBC의 단점은 매번 커넥션을 연결하고 클로즈 시켜 주어야 한다.
+
+또, 컬럼이 많다면 해당 컬럼을 일일히 호출(select)해야 한다.
+
+> MyBatis는 SQL을 별도의 XML로 분리하여 관리한다.
+
+
+
+### MyBatis란
+
+Java에서 관계형 DB 프로그래밍을 쉽게 하도록 도와주는 Framework
+
+
+
+### Mybatis 구조
+
+![](C:\Users\훈련생\git\learning_jsp\document\mybatis구조.png)
+
+
+
+
+
+<hr>
+

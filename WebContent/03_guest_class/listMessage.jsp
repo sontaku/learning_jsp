@@ -4,9 +4,14 @@
 <%@ page import="guest.model.*,guest.service.*" %>   
  
 <%
+	// 파라미터에서 페이지번호를 얻어오기
+	String pageNum = request.getParameter("page");
+
 	// 전체 메세지 레코드 검색 
-	List <Message> mList =  ListMessageService.getInstance().getMessageList();
- 	
+	ListMessageService service = ListMessageService.getInstance();
+	List <Message> mList =  service.getMessageList(pageNum);
+	
+	int totalPageCount = service.getTotalPage();
 %>    
 <!DOCTYPE html>
 <html>
@@ -39,6 +44,12 @@
 	
 	<% } // end if-else %>
 
-	<a href="insertMessage.jsp">글쓰기</a>
+	<a href="insertMessage.jsp">글쓰기</a> <hr/>
+	
+	<!-- 페이지 번호 출력 -->
+	<%	for(int i = 1; i <= totalPageCount; i++) { %>
+		<a href='listMessage.jsp?page=<%=i%>'>[<%=i%>]</a>
+	
+	<%	} // end of for %>
 </body>
 </html>

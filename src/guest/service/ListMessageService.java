@@ -29,12 +29,32 @@ public class ListMessageService {
 		
 	}
 	
-	public List <Message> getMessageList() throws MessageException
+	// 페이지 번호에 의해 검색
+	public List <Message> getMessageList(String pNum) throws MessageException
 	{
+		int pageNum = 1;
+		if(pNum != null) pageNum = Integer.parseInt(pNum);
+		int firstRow = 0, endRow = 0;
+		/*	pageNum		1	2	3
+		 * 	firstRow	1	4	7
+		 * 	endRow		3	6	9
+		 */
+		endRow = pageNum * countPerPage;
+		firstRow = (pageNum - 1) * 3 + 1; 
+		
 		// 전체 레코드를 검색해 온다면
-		List <Message> mList = MessageDao.getInstance().selectList();			
+		List <Message> mList = MessageDao.getInstance().selectList(firstRow, endRow);			
 		return mList;
 	}
 	
-	
+	public int getTotalPage() throws MessageException{
+		totalRecCount = MessageDao.getInstance().getTotalCount();			
+		/*	totalRecCount -> pageTotalCount
+		 * 		9				3
+		 * 		10				4
+		 */
+		pageTotalCount = totalRecCount / countPerPage;
+		if(totalRecCount % countPerPage > 0) pageTotalCount++;
+		return pageTotalCount;
+	}
 }

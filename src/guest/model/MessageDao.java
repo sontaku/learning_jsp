@@ -154,6 +154,28 @@ public class MessageDao {
 		boolean isEmpty = true;
 
 		try {
+			// 1. 연결객체 얻어오기
+			con = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+			// 2. sql 문장 만들기
+			String sql = "SELECT * " + //
+					" FROM guestTB WHERE message_id IN ( SELECT message_id " + //
+					" FROM (SELECT rownum rnum, message_id from (SELECT message_id " + //
+					" FROM guestTB ORDER BY message_id DESC)) WHERE rnum>= ? AND rnum <= ?)";//
+			// 3. 전송 객체 얻어오기
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, firstRow);
+			ps.setInt(2, endRow);
+
+			// 4. 전송
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				isEmpty = false;
+				Message m = new Message();
+				m.setMessageId(rs.getInt("MESSAGE_ID"));
+				m.setGuestName(rs.getString("GUEST_NAME"));
+				m.setMessage(rs.getString("MESSAGE"));
+				mList.add(m);
+			}
 
 			if (isEmpty)
 				return Collections.emptyList();
@@ -194,7 +216,17 @@ public class MessageDao {
 		int count = 0;
 
 		try {
-
+			// 1. 연결객체
+			con = DriverManager.getConnection(dbUrl, dbUser, dbPass);
+			// 2. sql
+			String sql = "SELECT count(*) AS cnt FROM guestTB";
+			// 3. 전송객체 - PreparedStatement
+			ps = con.prepareStatement(sql);
+			// 4. 전송
+			rs = ps.executeQuery();
+				// - 결과처리
+			rs.next();
+			count = rs.getInt("CNT");
 			return count;
 
 		} catch (Exception ex) {
