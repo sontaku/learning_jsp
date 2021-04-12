@@ -8,21 +8,34 @@ import mybatis.guest.model.Comment;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.*;
 
-public class CommentRepository 
-{
-	//	private final String namespace = "CommentMapper";
+public class CommentRepository {
+	// private final String namespace = "CommentMapper";
 
 	private SqlSessionFactory getSqlSessionFactory() {
-		
+
 		InputStream inputStream;
 		try {
 			inputStream = Resources.getResourceAsStream("mybatis-config.xml");
 		} catch (IOException e) {
 			throw new IllegalArgumentException(e);
 		}
-		SqlSessionFactory sessFactory =  new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSessionFactory sessFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		return sessFactory;
 	}
-	
+
+	/*
+	 * 	JDBC : Connection 
+	 * 	MyBatis : SqlSession
+	 */
+	public List<Comment> selectComment() {
+		SqlSession sqlSess = getSqlSessionFactory().openSession();
+		try {
+
+			return sqlSess.selectList("CommentMapper.selectComment");
+		} finally {
+			// 반환
+			sqlSess.close(); 
+		}
+	}
 
 }

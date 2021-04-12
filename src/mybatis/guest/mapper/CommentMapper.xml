@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='CommentMapper'>
+	<select id="selectComment" resultType="mybatis.guest.model.Comment">
+		SELECT 
+			comment_no commentNo, 
+			user_id userId, 
+			comment_content commentContent,
+			reg_date regDate
+		FROM comment_tab
+	</select>
+</mapper>

@@ -15,5 +15,10 @@ public class CommentService {
 		return service;
 	}
 	
+	private CommentRepository repo = new CommentRepository();
+	
+	public List<Comment> selectComment() {
+		return repo.selectComment();
+	}
 
 }

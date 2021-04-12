@@ -438,7 +438,57 @@ Java에서 관계형 DB 프로그래밍을 쉽게 하도록 도와주는 Framewo
 
 
 
+### Build - XML
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>
+     <environments default="development">
+         <environment id="development">
+         <transactionManager type="JDBC"/>
+             <dataSource type="POOLED">
+                 <property name="driver" value="${driver}"/>
+                 <property name="url" value="${url}"/>
+                 <property name="username" value="${username}"/>
+                 <property name="password" value="${password}"/>
+             </dataSource>
+         </environment>
+     </environments>
+ <mappers>
+ 	<mapper resource="org/mybatis/example/BlogMapper.xml"/>
+ </mappers>
+</configuration>
+```
 
 
-<hr>
+
+
+
+
+
+db.properties를 통해 driver~password를 매핑한다면 configuration안에 주입 시켜주면 된다.
+
+```properties
+# db.properties
+driver=oracle.jdbc.driver.OracleDriver
+url=jdbc:oracle:thin:@192.168.10.75:1521:xe
+username=SCOTT
+password=TIGER
+```
+
+```xml
+<configuration>
+	<properties resource="db.properties"></properties>
+    .
+    .
+    .
+</configuration>
+```
+
+
+
+
 
