@@ -490,5 +490,18 @@ password=TIGER
 
 
 
+join문 사용시 데이터타입은 HashMap으로 다루자
+
+```xml
+<mapper namespace='EmpMapper'>
+<!-- 조인 결과를 리턴할때 hashmap 이용 -->
+	<select id="selectEmp" resultType="hashmap">
+		SELECT *
+		FROM emp e, dept d 
+		WHERE e.deptno = d.deptno
+	</select>
+</mapper>
+```
+
 
 

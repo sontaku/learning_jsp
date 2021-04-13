@@ -21,4 +21,22 @@ public class CommentService {
 		return repo.selectComment();
 	}
 
+	public Comment selectCommentByPrimaryKey(int cId) {
+		return repo.selectCommentByPK(cId);
+	}
+	
+	// 입력
+	public void insertComment(Comment comment) {
+		repo.insertComment(comment);
+	}
+	
+	// 삭제
+	public void deleteComment(int cId) {
+		repo.deleteComment(cId);
+	}
+	
+	// 수정
+	public void updateComment(Comment comment) {
+		repo.updateComment(comment);
+	}
 }

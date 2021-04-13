@@ -14,7 +14,7 @@
  
  <!-- 서비스의 메소드 호출  -->
  <%
- 	CommentService.getInstance().insertComment(comment);
+ 	CommentService.getInstance().updateComment(comment);
  %>
     
     
@@ -22,12 +22,11 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="refresh" content="3;URL=listComment.jsp">
 <title>입력</title>
 </head>
 <body>
-
-입력되었는지 확인해보세요. <br/>
-<a href="listComment.jsp">목록보기</a>
-
+해당 메세지가 수정되었습니다.<br/>
+잠시 후 목록페이지로 이동합니다.
 </body>
 </html>

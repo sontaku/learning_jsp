@@ -24,18 +24,63 @@ public class CommentRepository {
 	}
 
 	/*
-	 * 	JDBC : Connection 
-	 * 	MyBatis : SqlSession
+	 * JDBC : Connection MyBatis : SqlSession
 	 */
+	// select 문의 결과를 1개이든 여러개이든 list로 받아 병렬 처리함
 	public List<Comment> selectComment() {
 		SqlSession sqlSess = getSqlSessionFactory().openSession();
 		try {
-
 			return sqlSess.selectList("CommentMapper.selectComment");
+
 		} finally {
 			// 반환
-			sqlSess.close(); 
+			sqlSess.close();
 		}
 	}
 
+	public Comment selectCommentByPK(int cId) {
+		SqlSession sqlSess = getSqlSessionFactory().openSession();
+		try {
+//			Comment result = sqlSess.selectOne("");
+//			return result;
+			return sqlSess.selectOne("CommentMapper.selectCommentByPK", cId);
+		} finally {
+			// 반환
+			sqlSess.close();
+		}
+	}
+
+	public void insertComment(Comment comment) {
+		SqlSession sqlSess = getSqlSessionFactory().openSession();
+		try {
+			int result = sqlSess.insert("CommentMapper.insertComment", comment);
+			if(result == 1) sqlSess.commit();
+		} finally {
+			// 반환
+			sqlSess.close();
+		}
+	}
+
+	// 삭제
+	public void deleteComment(int cId) {
+		SqlSession sqlSess = getSqlSessionFactory().openSession();
+		try {
+			int result = sqlSess.delete("CommentMapper.deleteComment", cId);
+			if(result == 1) sqlSess.commit();
+		} finally {
+			// 반환
+			sqlSess.close();
+		}
+	}
+
+	public void updateComment(Comment comment) {
+		SqlSession sqlSess = getSqlSessionFactory().openSession();
+		try {
+			int result = sqlSess.update("CommentMapper.updateComment", comment);
+			if(result == 1) sqlSess.commit();
+		} finally {
+			// 반환
+			sqlSess.close();
+		}
+	}
 }

@@ -4,6 +4,17 @@
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="db.properties"></properties>
+	<!-- 컬럼명과 VO의 프로퍼티 지정 -->
+	<!-- 언더바 표기법을 낙타등표기법으로 변경 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<!-- VO(DTO) 별칭 부여 -->
+	<!-- mybatis.guest.model.Comment AS comment -->
+	<typeAliases>
+		<typeAlias type="mybatis.guest.model.Comment" alias="comment"/>
+	</typeAliases>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />

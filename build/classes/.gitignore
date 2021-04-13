@@ -1,2 +1,5 @@
-/mybatis/
 /db.properties
+/guest/
+/log4j.xml
+/mybatis-config.xml
+/mybatis/

@@ -17,3 +17,5 @@ INSERT INTO comment_tab VALUES(seq_message_messageid.nextval, '홍길동', '안�
 INSERT INTO comment_tab VALUES(seq_message_messageid.nextval, '박길동', '안녕하세요2', SYSDATE);
 INSERT INTO comment_tab VALUES(seq_message_messageid.nextval, '장길동', '안녕하세요3', SYSDATE);
 INSERT INTO comment_tab VALUES(seq_message_messageid.nextval, '김길동', '안녕하세요4', SYSDATE);
+
+commit;
