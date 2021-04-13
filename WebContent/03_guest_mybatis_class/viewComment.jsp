@@ -34,5 +34,6 @@
 				<a href="deleteComment.jsp?cId=<%=comment.getCommentNo()%>"><input type="button" id="btnDelete" value="삭제" /></a></td>
 		</tr>
 	</table>
+	<a href="listComment.jsp">목록보기</a>
 </body>
 </html>

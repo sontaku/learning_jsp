@@ -22,7 +22,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="refresh" content="3;URL=listComment.jsp">
+	<meta http-equiv="refresh" content="0;URL=viewComment.jsp?cId=<%=comment.getCommentNo()%>">
 <title>입력</title>
 </head>
 <body>
