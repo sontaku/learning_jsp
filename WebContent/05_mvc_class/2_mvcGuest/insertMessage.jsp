@@ -10,7 +10,7 @@
 	{
 		var frmObj = document.frm;
 		
-		frmObj.action = "";
+		frmObj.action = "devking?cmd=input-save";
 		frmObj.submit();
 	}
 </script>
@@ -19,7 +19,8 @@
 <body>
 
 	<form name="frm" method="post">
-		이름 : <input type="text" name="guestName"/><br/><br/>
+		<!-- <input type='hidden' name='cmd' value='input-save'> -->
+		이름 : <input type="text" name="guestName" /><br/><br/>
 		암호 : <input type="password" name="password"/><br/><br/>
 		메세지 : <textarea name="message" rows="3" cols="30"></textarea><br/><br/>
 		<input type="button" value="메세지 남기기" onclick="Javascript:checkFields()">

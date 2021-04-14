@@ -13,5 +13,4 @@ public class CommandNull implements Command{
 	public String execute( HttpServletRequest request, HttpServletResponse response   ) throws CommandException{
 		return next;
 	}
-
 }

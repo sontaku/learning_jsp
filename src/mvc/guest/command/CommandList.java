@@ -19,7 +19,7 @@ public class CommandList implements Command
 
 	public String execute( HttpServletRequest request , HttpServletResponse response  ) throws CommandException{
 		try{
-			
+
 		    List <Message> mList = MessageDao.getInstance().selectList();	
 		    // 중요
 		    // 화면으로 넘길 데이터 request에 속성으로 저장

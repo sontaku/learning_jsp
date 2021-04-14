@@ -11,7 +11,7 @@
 </head>
 <body>
 	메세지를 삭제하려면 암호를 입력하세요. <br/><br/>
-	<form action="" method="post">
+	<form action="./devking?cmd=delete-confirm" method="post">
 		<input type="hidden" name="messageId" value="<%=messageId%>"/>
 		암호 : <input type="password" name="password" />
 		<input type="submit" value="메세지 삭제"/>

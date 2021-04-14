@@ -17,6 +17,6 @@
 	<% } %>
 	
 	<br/><br/>
-	<a href=""> [ 목록보기 ] </a>
+	<a href="./devking?cmd=list-page"> [ 목록보기 ] </a>
 </body>
 </html>

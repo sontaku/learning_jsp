@@ -33,11 +33,14 @@ public class GuestControl extends HttpServlet {
 
 	private void initCommand(){
 		commandMap = new HashMap();
-
+		
 		commandMap.put("main-page",	new CommandNull("main.jsp") );
 		commandMap.put("list-page",	new CommandList("listMessage.jsp") );
 		// 나머지도 추가하기		
-		
+		commandMap.put("input-form", new CommandNull("insertMessage.jsp") );
+		commandMap.put("input-save", new CommandInput("saveMessage.jsp") );
+		commandMap.put("delete-msg", new CommandNull("deleteMessage.jsp") );
+		commandMap.put("delete-confirm", new CommandDelete("deleteConfirm.jsp") );
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +50,6 @@ public class GuestControl extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
-	
 
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -79,7 +81,5 @@ public class GuestControl extends HttpServlet {
 
 		RequestDispatcher reqDp = getServletContext().getRequestDispatcher( jspDir + nextPage );
 		reqDp.forward( request, response );
-		
 	}
-
 }
