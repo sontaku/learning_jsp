@@ -490,6 +490,8 @@ password=TIGER
 
 
 
+### Query 사용
+
 join문 사용시 데이터타입은 HashMap으로 다루자
 
 ```xml
@@ -504,4 +506,82 @@ join문 사용시 데이터타입은 HashMap으로 다루자
 ```
 
 
+
+#### CDATA
+
+조건문 꺾쇠사용시 xml파일에서는 꺾쇠 이후 내용을 인지할 수 없다.
+
+
+
+CDATA를 통해 꺾쇠 사용 적용
+
+
+
+
+
+## EL (표현언어)
+
+- JSP 기본문법을 보완하고자 만들어진 새로운 스크립트 언어
+- JSP의 표현식인 <%= %> 코드 대신 ${ }로 사용한다
+
+```xml
+<%= info.getName() %>
+    
+${info.name}
+```
+
+
+
+### EL 내장 객체 종류
+
+참고 : https://dololak.tistory.com/742
+
+
+
+
+
+## JSTL
+
+> JavaServer Pages Standard Tag Library
+>
+> 자바서버 페이지 표준 태그 라이브러리
+
+
+
+### JSTL 설정
+
+```xml
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+```
+
+
+
+#### 변수 선언
+
+```xml
+<c:set var='gender' value='male' />
+```
+
+
+
+#### if문
+
+```xml
+<c:if test="${ gender =='male'}">당신은 남성입니다</c:if>
+<c:if test="${ gender =='female'}">당신은 여성입니다</c:if>
+```
+
+
+
+
+
+## MVC in JSP
+
+### MODEL 1
+
+
+
+
+
+### MODEL 2
 

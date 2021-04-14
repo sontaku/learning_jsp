@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='CommentMapper'>
+	<!--  
+		***** 
+		Type과 Map 중 Type만 사용함 
+		resultType만 사용함
+		( resultMap 우선 사용 안함)
+		parameteType만 사용함
+		( parameterMap 우선 사용 안함)
+	-->
+	<!-- 
+	<select id="selectComment" resultType="comment">
+		SELECT 
+			comment_no commentNo, 
+			user_id userId, 
+			comment_content commentContent,
+			reg_date regDate
+		FROM comment_tab
+	</select>
+	 -->
+	<select id="selectComment" resultType="comment">
+		SELECT * 
+		FROM comment_tab
+	</select>
+	<select id="selectCommentByPK" parameterType="int" resultType="comment">
+		SELECT * 
+		FROM comment_tab
+		WHERE comment_no = #{cId}
+	</select>
+	<!-- 
+		#{ } : PreparedStatement의 ?를 설정하듯이 setString(), setInt() 지정
+		${ } : Statement를 설정하듯이
+	 -->
+	 <insert id="insertComment" parameterType="comment">
+	 	INSERT INTO comment_tab VALUES(seq_message_messageid.nextval, #{userId}, #{commentContent}, SYSDATE)
+	 </insert>
+	 
+	 
+	 <delete id="deleteComment">
+	 	DELETE FROM comment_tab WHERE comment_no = #{commentNo}
+	 </delete>
+	 
+	 <update id="updateComment" parameterType="comment">
+	 	UPDATE comment_tab SET 
+	 		user_id = #{userId}, 
+	 		comment_content = #{commentContent} 
+		WHERE comment_no = #{commentNo}
+	 </update>
+</mapper>
